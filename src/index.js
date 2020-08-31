@@ -10,7 +10,7 @@ const cli = commander
   .description('cli to query DynamoDB tables')
   .requiredOption('--region <region>')
   .requiredOption('--endpoint <endpoint>')
-  .option('--page-size <pageSize>', 25)
+  .option('--page-size <pageSize>', 'page size', 25)
   .option('--table-name <tableName>')
   .option('--convert-empty-values')
 
