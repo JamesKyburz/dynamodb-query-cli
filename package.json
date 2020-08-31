@@ -5,7 +5,7 @@
     "aws",
     "dynamodb"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "bin": {
     "dynamodb-query": "src/index.js"
   },
