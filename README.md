@@ -15,7 +15,7 @@ cli to query DynamoDB tables
 Options:
   --region <region>         
   --endpoint <endpoint>     
-  --page-size <pageSize>    25
+  --page-size <pageSize>    page size (default: 25)
   --table-name <tableName>  
   --convert-empty-values    
   -h, --help                display help for command
