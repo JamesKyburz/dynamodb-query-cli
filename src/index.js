@@ -117,11 +117,16 @@ async function run () {
     const [pk, sk] = indexOrTable.KeySchema
       ? indexOrTable.KeySchema
       : indexOrTable
-    const { pkValue } = await inquirer.prompt({
+    const pkType = attributeDefinitions.find(
+      x => x.AttributeName === pk.AttributeName
+    ).AttributeType
+    const { value } = await inquirer.prompt({
       type: 'input',
-      name: 'pkValue',
+      name: 'value',
       message: `Partition key (${pk.AttributeName})`
     })
+
+    const pkValue = pkType === 'S' ? value : Number(value)
 
     const skType = sk
       ? attributeDefinitions.find(x => x.AttributeName === sk.AttributeName)
@@ -157,7 +162,7 @@ async function run () {
           await getValue(`${sk.AttributeName} to value`)
         ]
       : [await getValue(`${sk.AttributeName} value`)]
-    ).map(x => (skType === 'N' ? Number(x.value) : x.value))
+    ).map(x => (skType === 'S' ? x.value : Number(x.value)))
 
     const skKeyExpression = ['begins_with', 'between'].includes(skComparision)
       ? skValues.length === 1
