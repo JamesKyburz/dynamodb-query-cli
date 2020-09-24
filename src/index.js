@@ -28,6 +28,11 @@ const dynamodb = {
 async function run () {
   const { TableNames: tables } = await dynamodb.db.listTables().promise()
 
+  if (tables.length === 0) {
+    console.log(chalk.cyan('no tables found'))
+    return
+  }
+
   const { table } = tableName
     ? { table: tableName }
     : await inquirer.prompt({
